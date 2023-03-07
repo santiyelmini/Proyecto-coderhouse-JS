@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda PC</title>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+</head>
+<body>
+    <aside>
+        <nav class="nav">
+            <a href="index.html" class="logo-link">
+                <img class="nav-logo" src="assets/img/logo.png" alt="tienda pc logo">
+            </a>
+            <div class="carrito">
+                <i class='bx bx-cart-alt'></i>
+            </div>
+        </nav>
+    </aside>
+    <main>
+        <div class="carrito">
+            <h1 class="titulo">Carrito</h1>
+            <div class="carrito-dom">
+                <div class="carrito-productos"></div>
+                <div class="botones-carrito-contenedor">
+                    <button class="vaciar-carrito"><i class='bx bxs-trash'></i>vaciar carrito</button>
+                    <div class="comprar-contenedor">
+                        <span class="total-carrito">total: $</span>
+                        <button class="boton-comprar"><i class='bx bxs-shopping-bag'></i>comprar ahora</button>
+                    </div>
+                </div>
+            </div>
+            <div class="carrito-mensajes">
+                <span class="carrito-vacio">Tu carrito se encuentra vacio.</span>
+                <span class="carrito-comprado">Muchas gracias por su compra.</span>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
