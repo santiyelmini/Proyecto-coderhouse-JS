@@ -1,6 +1,5 @@
 
 <h1>Project preview</h1>
-<hr>
 <h3>Productos</h3>
 <img src="assets/preview1.jpg">
 <hr>
