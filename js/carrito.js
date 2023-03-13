@@ -48,15 +48,6 @@ function mostrarProductosCarrito() {
 }
 mostrarProductosCarrito()
 
-function eliminarItemDelCarrito(evento) {
-    const idProducto = evento.currenTarget.id;
-    const index = carrito.findIndex(producto => producto.id === idProducto);
-    if (index !== -1) {
-        carrito.splice(index, 1);
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-        mostrarProductosCarrito();
-    }
-}
 
 function actualizarTotal() {
     const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
