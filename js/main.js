@@ -171,33 +171,35 @@ const formularioBuscar = document.querySelector(".buscar-producto");
 formularioBuscar.addEventListener("submit", buscarProducto);
 
 function buscarProducto(evento) {
-  evento.preventDefault();
-  const inputBuscar = document.querySelector(".buscar-input");
-  const valorBuscar = inputBuscar.value.trim().toLowerCase();
-  const productosFiltrados = productos.filter((producto) =>
-    producto.nombre.toLowerCase().includes(valorBuscar)
-  );
-  productosContenedor.innerHTML = "";
+    evento.preventDefault();
+    const inputBuscar = document.querySelector(".buscar-input");
+    const valorBuscar = inputBuscar.value.trim().toLowerCase();
+    const productosFiltrados = productos.filter((producto) =>
+      producto.nombre.toLowerCase().includes(valorBuscar)
+    );
+    productosContenedor.innerHTML = "";
+    
+    const mensaje = valorBuscar ? `Mostrando resultados de: ${valorBuscar}` : "Ingrese un término de búsqueda";
 
-  if (productosFiltrados.length === 0) {
-    mensajeBusqueda.textContent = "No hay resultados";
-  } else {
-    mensajeBusqueda.textContent = `Mostrando resultados de: ${valorBuscar}`;
+    mensajeBusqueda.textContent = mensaje;
+    if (productosFiltrados.length === 0) {
+      mensajeBusqueda.textContent = "No hay resultados";
+    } else {
     productosFiltrados.forEach((producto) => {
-      const productoElemento = document.createElement("div");
-      productoElemento.classList.add("producto");
-      productoElemento.innerHTML = `
-          <img class="producto-imagen" src="${producto.imagen}">
-          <div class="producto-info">
-              <span class="producto-nombre">${producto.nombre}</span>
-              <span class="producto-precio">$${producto.precio}</span>
-              <button class="boton-agregar" id="${producto.id}">
-                  <i class='bx bx-cart-alt'></i>
-                  Agregar
-              </button>
-          </div>`;
-      productosContenedor.append(productoElemento);
+        const productoElemento = document.createElement("div");
+        productoElemento.classList.add("producto");
+        productoElemento.innerHTML = `
+            <img class="producto-imagen" src="${producto.imagen}">
+            <div class="producto-info">
+                <span class="producto-nombre">${producto.nombre}</span>
+                <span class="producto-precio">$${producto.precio}</span>
+                <button class="boton-agregar" id="${producto.id}">
+                    <i class='bx bx-cart-alt'></i>
+                    Agregar
+                </button>
+            </div>`;
+        productosContenedor.append(productoElemento);
     });
     botonesActualizar();
-  }
+    }
 }
