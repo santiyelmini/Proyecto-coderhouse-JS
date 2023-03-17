@@ -51,14 +51,32 @@ mostrarProductosCarrito()
 
 function actualizarTotal() {
     const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
-    totalCarrito.innerText = `$${totalCalculado}`;
+    totalCarrito.innerText = `Total: $${totalCalculado}`;
 }
 
 vaciarCarritoBoton.addEventListener("click", vaciarCarrito)
 function vaciarCarrito() {
-    productosEnCarrito.length = 0;
-    localStorage.setItem("carrito", JSON.stringify(productosEnCarrito));
-    mostrarProductosCarrito();
+    Swal.fire({
+        title: 'Estas seguro?',
+        icon: 'question',
+        html:
+          'Se van a borrar todos tus productos.',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText:
+          'Sí',
+        confirmButtonAriaLabel: 'Thumbs up, great!',
+        cancelButtonText:
+          'No',
+        cancelButtonAriaLabel: 'Thumbs down'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            productosEnCarrito.length = 0;
+            localStorage.setItem("carrito", JSON.stringify(productosEnCarrito));
+            mostrarProductosCarrito();
+        }
+    })
 }
 
 comprarCarritoBoton.addEventListener("click", comprarCarrito)
