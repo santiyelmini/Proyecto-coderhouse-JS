@@ -166,6 +166,9 @@ body {
           flex-direction: column; }
           body main .carrito .carrito-productos .carrito-item .carrito-item-section .section-title {
             font-size: 13px; }
+        body main .carrito .carrito-productos .carrito-item .boton-eliminar {
+          color: #ff0000;
+          cursor: pointer; }
       body main .carrito .botones-carrito-contenedor {
         display: flex;
         flex-direction: row;

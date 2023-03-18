@@ -36,7 +36,8 @@ function mostrarProductosCarrito() {
             <div class="carrito-item-section">
                 <span class="section-title">Subtotal</span>
                 <span>${producto.precio * producto.cantidad}</span>
-            </div>`;
+            </div>
+            <i class='bx bxs-trash boton-eliminar' id="${producto.id}">`;
             carritoProductosDom.append(div);
         });
     } else {
@@ -45,9 +46,41 @@ function mostrarProductosCarrito() {
         carritoCompradoMensaje.classList.add("oculto")
     }
     actualizarTotal();
+    actualizarBotonesEliminar();
 }
 mostrarProductosCarrito()
 
+
+function actualizarBotonesEliminar() {
+    botonesEliminar = document.querySelectorAll(".boton-eliminar");
+    botonesEliminar.forEach(boton => {
+        boton.addEventListener("click", eliminarDelCarrito);
+    });
+}
+
+function eliminarDelCarrito(evento) {
+    Toastify({
+        text: "Producto eliminado",
+        duration: 1000,
+        newWindow: true,
+        close: false,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
+        offset: {
+            x: "25px"
+        },
+        style: {
+            background: "linear-gradient(to right, #FFA500, #f7b945)",
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
+    const id = evento.target.getAttribute("id");
+    const index = productosEnCarrito.findIndex(producto => producto.id === id);
+    productosEnCarrito.splice(index, 1);
+    localStorage.setItem("carrito", JSON.stringify(productosEnCarrito));
+    mostrarProductosCarrito();
+}
 
 function actualizarTotal() {
     const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
@@ -57,10 +90,10 @@ function actualizarTotal() {
 vaciarCarritoBoton.addEventListener("click", vaciarCarrito)
 function vaciarCarrito() {
     Swal.fire({
-        title: 'Estas seguro?',
+        title: '¿Estas seguro?',
         icon: 'question',
         html:
-          'Se van a borrar todos tus productos.',
+          `Se van a borrar ${productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} productos.`,
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,

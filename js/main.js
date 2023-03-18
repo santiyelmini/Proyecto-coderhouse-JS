@@ -1,12 +1,14 @@
 
-let productos = []
+let productos = [];
 
-fetch("./js/productos.json")
-    .then(response => response.json())
-    .then(data => {
-        productos = data;
-        mostrarProductos(productos)
-    })
+async function obtenerProductos() {
+    const response = await fetch("./js/productos.json");
+    const data = await response.json();
+    productos = data;
+    mostrarProductos(productos);
+}
+
+obtenerProductos();
 
 const productosContenedor = document.querySelector(".productos-contenedor")
 let botonesAgregar = document.querySelectorAll(".boton-agregar")
@@ -46,11 +48,11 @@ function agregarAlCarrito(evento) {
         duration: 1000,
         newWindow: true,
         close: false,
-        gravity: "top",
+        gravity: "bottom",
         position: "right",
         stopOnFocus: true,
         offset: {
-            y: "100px"
+            x: "10px"
         },
         style: {
           background: "linear-gradient(to right, #FFA500, #f7b945)",
