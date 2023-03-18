@@ -97,7 +97,7 @@ function buscarProducto(evento) {
     );
     productosContenedor.innerHTML = "";
     
-    const mensaje = valorBuscar ? `Mostrando resultados de: ${valorBuscar}` : "Ingrese un término de búsqueda";
+    const mensaje = valorBuscar ? `Mostrando resultados de: ${valorBuscar}` : "Todos los productos";
 
     mensajeBusqueda.textContent = mensaje;
     if (productosFiltrados.length === 0) {
