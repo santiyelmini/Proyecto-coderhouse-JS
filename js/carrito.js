@@ -73,7 +73,7 @@ function eliminarDelCarrito(evento) {
         style: {
             background: "linear-gradient(to right, #FFA500, #f7b945)",
         },
-        onClick: function(){} // Callback after click
+        onClick: function(){}
     }).showToast();
     const id = evento.target.getAttribute("id");
     const index = productosEnCarrito.findIndex(producto => producto.id === id);
